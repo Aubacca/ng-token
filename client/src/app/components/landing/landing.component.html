@@ -1,0 +1,42 @@
+<h1>Start Page</h1>
+<hr>
+<div *ngIf="isAuthenticated; then doSomething; else doSomethingElse;"></div>
+<ng-template #doSomething>
+  <div class="row">
+    <div class="col-md-1">
+      <a [routerLink]="['/status']" class="btn btn-primary">Status</a>
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-primary" (click)="logOut()">Log out</button>
+    </div>
+    <div class="col-md-3">
+      <p>You logged in <em>{{user.email}}!</em></p>
+    </div>
+  </div>
+</ng-template>
+<ng-template #doSomethingElse>
+  <div class="row">
+    <div class="col-md-1">
+      <a [routerLink]="['/status']" class="btn btn-primary">Status</a>
+    </div>
+    <div class="col-offset-md-4 col-md-1">
+      <a [routerLink]="['/log-in']" class="btn btn-primary">Log in</a>
+    </div>
+    <div class="col-md-1">
+      <a [routerLink]="['/sign-up']" class="btn btn-primary">Sign up</a>
+    </div>
+  </div>
+</ng-template>
+<hr>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Current State</h5>
+    <ul>
+      <li><strong>isAuthenticated</strong> - {{isAuthenticated}}</li>
+      <li><strong>user.email</strong> - {{ user?.email || 'null'}}</li>
+      <li><strong>user.token</strong> - {{ user?.token || 'null'}}</li>
+      <li><strong>errorMessage</strong> - {{ errorMessage || 'null'}}</li>
+    </ul>
+  </div>
+</div>
